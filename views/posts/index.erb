@@ -1,0 +1,44 @@
+<!-- <p><%= @tester %></p> -->
+
+<div class="block_overflow">
+  <%= @html %>
+  <% @posts.each do |post| %>
+    <p class="title">
+      <%=post.title %>
+    </p>
+    <p class="body"> 
+      <%= post.body %>
+    </p>
+<!--     <p class="body">
+        <%= CodeRay.scan("#{post.body}", :ruby).div(:line_nmbers => :table) %>
+    </p>  --> 
+    <% end %>
+</div>
+
+
+
+<form action="posts/create" method="POST" class="post_create">
+  <!-- Create post title -->
+    <p>Title:</p>
+    <input type="text" name="title" />
+  <!-- Create post body -->
+    <p>Body:</p>
+    <textarea name="body" /></textarea>
+    <input type="checkbox" name="highlighter" value="true">Code highlighting<br>
+    <input type="submit" value="Post" />
+</form>
+
+
+
+<!-- Delete menu to select posts from -->
+<form action="posts/delete" method="POST">
+  <select name="id">
+    <% @posts.each do |post| %>
+    <option value="<%= post.id %>"><%= post.title %></option>
+    <% end %>
+  </select>
+          <button>delete</button>
+
+
+    </form>
+
